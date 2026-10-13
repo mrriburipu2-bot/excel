@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkexcel_claude_ai_addin=self.webpackChunkexcel_claude_ai_addin||[]).push([[161],{161(e,n,a){var t=a(657);function i(e){return new Proxy({},{get(n,a){if("symbol"!=typeof a)throw new t.pJ(`\`${e}.${a}\` is not available in this environment; it needs a Node.js-compatible runtime`)}})}const s=i("fs"),c=i("path");a.d(n,["fs",0,s,"path",0,c])}}]);

@@ -1,0 +1,163 @@
+{
+    "allowCustomDataForDataTypeAny": true,
+    "functions": [
+        {
+            "description": "Ask Claude anything. Optionally pass cells as context.",
+            "id": "ASK",
+            "name": "ASK",
+            "parameters": [
+                {
+                    "description": "Question or instruction.",
+                    "name": "prompt",
+                    "type": "string"
+                },
+                {
+                    "description": "Cells to include as context.",
+                    "dimensionality": "matrix",
+                    "name": "context",
+                    "optional": true,
+                    "type": "any"
+                }
+            ],
+            "result": {
+                "type": "string"
+            }
+        },
+        {
+            "description": "Write an Excel formula from a plain-language description.",
+            "id": "FORMULA",
+            "name": "FORMULA",
+            "parameters": [
+                {
+                    "description": "What the formula should do, e.g. \"sum column B where column A is North\".",
+                    "name": "description",
+                    "type": "string"
+                },
+                {
+                    "description": "Optional sample of the data (with headers) the formula will work on.",
+                    "dimensionality": "matrix",
+                    "name": "sample",
+                    "optional": true,
+                    "type": "any"
+                }
+            ],
+            "result": {
+                "type": "string"
+            }
+        },
+        {
+            "description": "Classify text into one of the given categories.",
+            "id": "CLASSIFY",
+            "name": "CLASSIFY",
+            "parameters": [
+                {
+                    "description": "Text to classify.",
+                    "name": "text",
+                    "type": "string"
+                },
+                {
+                    "description": "Cells listing the categories (or one cell with a comma-separated list).",
+                    "dimensionality": "matrix",
+                    "name": "categories",
+                    "type": "string"
+                }
+            ],
+            "result": {
+                "type": "string"
+            }
+        },
+        {
+            "description": "Extract a piece of information from text (e.g. email, company, amount, date).",
+            "id": "EXTRACT",
+            "name": "EXTRACT",
+            "parameters": [
+                {
+                    "description": "Source text.",
+                    "name": "text",
+                    "type": "string"
+                },
+                {
+                    "description": "What to extract.",
+                    "name": "what",
+                    "type": "string"
+                }
+            ],
+            "result": {
+                "type": "string"
+            }
+        },
+        {
+            "description": "Translate text into another language.",
+            "id": "TRANSLATE",
+            "name": "TRANSLATE",
+            "parameters": [
+                {
+                    "description": "Text to translate.",
+                    "name": "text",
+                    "type": "string"
+                },
+                {
+                    "description": "Target language, e.g. \"Spanish\".",
+                    "name": "language",
+                    "type": "string"
+                }
+            ],
+            "result": {
+                "type": "string"
+            }
+        },
+        {
+            "description": "Summarize text or a range of cells.",
+            "id": "SUMMARIZE",
+            "name": "SUMMARIZE",
+            "parameters": [
+                {
+                    "description": "Cells to summarize.",
+                    "dimensionality": "matrix",
+                    "name": "data",
+                    "type": "any"
+                },
+                {
+                    "description": "Optional focus, e.g. \"in 10 words\" or \"key risks\".",
+                    "name": "instructions",
+                    "optional": true,
+                    "type": "string"
+                }
+            ],
+            "result": {
+                "type": "string"
+            }
+        },
+        {
+            "description": "Sentiment of a piece of text: Positive, Negative, Neutral or Mixed.",
+            "id": "SENTIMENT",
+            "name": "SENTIMENT",
+            "parameters": [
+                {
+                    "description": "Text to analyze.",
+                    "name": "text",
+                    "type": "string"
+                }
+            ],
+            "result": {
+                "type": "string"
+            }
+        },
+        {
+            "description": "Generate a table of data that spills into neighbouring cells.",
+            "id": "TABLE",
+            "name": "TABLE",
+            "parameters": [
+                {
+                    "description": "What table to generate, e.g. \"10 largest countries by area with capital and population\".",
+                    "name": "prompt",
+                    "type": "string"
+                }
+            ],
+            "result": {
+                "dimensionality": "matrix",
+                "type": "string"
+            }
+        }
+    ]
+}

@@ -5,9 +5,9 @@ const CustomFunctionsMetadataPlugin = require("custom-functions-metadata-plugin"
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 // Where the add-in is served from in development. For production, change
-// urlProd to your HTTPS host; manifest URLs are rewritten during the build.
+// urlProd (or set ADDIN_URL) to your HTTPS host; manifest URLs are rewritten during the build.
 const urlDev = "https://localhost:3000/";
-const urlProd = "https://www.contoso.com/";
+const urlProd = process.env.ADDIN_URL || "https://www.contoso.com/";
 
 async function getHttpsOptions() {
   const httpsOptions = await devCerts.getHttpsServerOptions();
@@ -17,7 +17,7 @@ async function getHttpsOptions() {
 module.exports = async (env, options) => {
   const dev = options.mode === "development";
   return {
-    devtool: "source-map",
+    devtool: dev ? "source-map" : false,
     entry: {
       taskpane: "./src/taskpane/taskpane.ts",
       functions: "./src/functions/functions.ts",

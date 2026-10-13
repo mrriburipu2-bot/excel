@@ -1,6 +1,7 @@
 @echo off
-rem One-click setup for Excel on Windows: installs dependencies, trusts the
-rem localhost certificate, starts the add-in server and sideloads it into Excel.
+rem Installs and starts the Claude AI add-in for Excel on Windows.
+rem Needs only Node.js - no npm install, about 1 MB of disk space.
+rem Run this file again whenever you want to use the add-in.
 cd /d "%~dp0"
 
 where node >nul 2>nul
@@ -10,22 +11,21 @@ if errorlevel 1 (
   exit /b 1
 )
 
-echo Closing Excel so the add-in can be registered...
-taskkill /IM EXCEL.EXE /F >nul 2>nul
+tasklist /FI "IMAGENAME eq EXCEL.EXE" 2>nul | find /I "EXCEL.EXE" >nul
+if not errorlevel 1 (
+  echo Excel is open. Please SAVE your work and CLOSE Excel, then press any key.
+  pause >nul
+)
 
-echo Installing dependencies (first run takes a minute)...
-call npm install
-if errorlevel 1 goto :fail
+powershell -NoProfile -ExecutionPolicy Bypass -File "%~dp0windows\install.ps1"
+if errorlevel 1 (
+  echo.
+  echo Setup failed. Scroll up to see the error.
+  pause
+  exit /b 1
+)
 
-echo Installing the localhost HTTPS certificate (click Yes if Windows asks)...
-call npx office-addin-dev-certs install
-if errorlevel 1 goto :fail
-
-echo Starting the add-in and opening Excel. Keep this window open while you use the add-in.
-call npm start
-goto :eof
-
-:fail
-echo Setup failed. Scroll up to see the error.
+echo Opening Excel...
+start "" excel.exe
+node "%~dp0windows\server.js" "%LOCALAPPDATA%\ClaudeExcelAddin\localhost.pfx" "claude-excel-localhost"
 pause
-exit /b 1

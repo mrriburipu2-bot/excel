@@ -1,5 +1,4 @@
 @echo off
-rem Stops the add-in server and removes the sideloaded add-in from Excel.
-cd /d "%~dp0"
-call npm stop
+rem Removes the Claude AI add-in and its localhost certificate from this PC.
+powershell -NoProfile -ExecutionPolicy Bypass -File "%~dp0windows\uninstall.ps1"
 pause

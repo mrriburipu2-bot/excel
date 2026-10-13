@@ -47,14 +47,19 @@ This add-in isn't in the Office Store, so it won't appear under **Home → Add-i
 
 ### Excel for Windows (desktop)
 
-1. Install **Node.js LTS** from [nodejs.org](https://nodejs.org).
-2. Download this repository: **Code → Download ZIP** on GitHub, then unzip it. Or run `git clone https://github.com/mrriburipu2-bot/excel.git`.
-3. Double-click **`install-windows.cmd`** in the folder. If Windows asks whether to trust the "Developer CA for Microsoft Office Add-ins" certificate, click **Yes**.
-4. Excel opens with a **Claude AI → AI Assistant** button on the **Home** tab. Keep the black command window open while you use the add-in.
+You only need **Node.js** (LTS from [nodejs.org](https://nodejs.org)). No `npm install` is needed: the repository ships a ready-built add-in (`windows/addin`, about 0.5 MB).
 
-Next time, open a terminal in the folder and run `npm start` (or double-click `install-windows.cmd` again). To remove the add-in, run `uninstall-windows.cmd`.
+1. Download this repository: **Code → Download ZIP** on GitHub, then unzip it.
+2. Double-click **`install-windows.cmd`**.
+   - If Excel is open, it asks you to save and close it first.
+   - Windows asks whether to install a certificate for `localhost`. Click **Yes**. The certificate lets Excel load the add-in securely from your own PC and is installed for your user only.
+3. Excel opens with **Home → Claude AI → AI Assistant**. Keep the black window open while you use the add-in; closing it stops the add-in.
 
-> The Office Add-ins dialog in desktop Excel only lists Store add-ins. It has no "Upload My Add-in" option, so use the script above rather than that dialog.
+Each time you want to use the add-in, double-click `install-windows.cmd` again; later runs skip the setup steps. To remove the add-in and its certificate, run `uninstall-windows.cmd`.
+
+> The Office Add-ins dialog in desktop Excel only lists Store add-ins and has no "Upload My Add-in" option. That's why the script registers the add-in with Excel directly.
+
+Developers: after changing the source, run `npm run package:windows` to rebuild `windows/addin`.
 
 ### Excel on the web
 
@@ -65,11 +70,11 @@ npm run dev-server     # keep running; serves https://localhost:3000
 
 Then in Excel on the web go to **Home → Add-ins → More Add-ins → My Add-ins → Upload My Add-in** and choose `manifest.xml`.
 
-### Excel for Mac / manual
+### Excel for Mac / development
 
 ```bash
-npm install
-npm start              # starts the server and sideloads into Excel desktop
+npm install            # full developer tooling (several hundred MB)
+npm start              # starts the dev server and sideloads into Excel desktop
 ```
 
 ### First use

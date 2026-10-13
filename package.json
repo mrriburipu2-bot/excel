@@ -9,6 +9,7 @@
     "dev-server": "webpack serve --mode development",
     "start": "office-addin-debugging start manifest.xml desktop",
     "stop": "office-addin-debugging stop manifest.xml desktop",
+    "package:windows": "node scripts/package-windows.js",
     "validate": "office-addin-manifest validate manifest.xml",
     "typecheck": "tsc --noEmit",
     "test": "node --test --experimental-strip-types test/*.test.ts"
