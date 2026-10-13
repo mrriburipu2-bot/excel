@@ -56,6 +56,7 @@ function initSettings() {
   $("save-settings").addEventListener("click", () => {
     settings = {
       apiKey: $<HTMLInputElement>("api-key").value.trim(),
+      workspaceId: $<HTMLInputElement>("workspace-id").value.trim(),
       model: model.value,
       effort: $<HTMLSelectElement>("effort").value as Effort,
       baseURL: $<HTMLInputElement>("base-url").value.trim(),
@@ -69,6 +70,7 @@ function initSettings() {
 
 function showSettings() {
   $<HTMLInputElement>("api-key").value = settings.apiKey;
+  $<HTMLInputElement>("workspace-id").value = settings.workspaceId;
   $<HTMLSelectElement>("model").value = settings.model;
   $<HTMLSelectElement>("effort").value = settings.effort;
   $<HTMLInputElement>("base-url").value = settings.baseURL;

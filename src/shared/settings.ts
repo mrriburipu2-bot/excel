@@ -5,6 +5,8 @@ export type Effort = "low" | "medium" | "high" | "xhigh" | "max";
 
 export interface Settings {
   apiKey: string;
+  /** Needed when the API key is not scoped to a workspace (sent as anthropic-workspace-id). */
+  workspaceId: string;
   model: string;
   effort: Effort;
   /** Optional proxy that forwards to the Anthropic API (keeps the key off the client). */
@@ -23,6 +25,7 @@ export const MODELS: { id: string; label: string }[] = [
 
 export const DEFAULT_SETTINGS: Settings = {
   apiKey: "",
+  workspaceId: "",
   model: "claude-opus-5-5",
   effort: "medium",
   baseURL: "",

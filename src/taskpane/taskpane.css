@@ -45,7 +45,7 @@ button:disabled { opacity: .5; cursor: default; }
 .panel h2 { margin: 0; font-size: 15px; }
 .panel label { display: flex; flex-direction: column; gap: 4px; font-size: 13px; }
 .panel label.check { flex-direction: row; align-items: center; gap: 6px; }
-.panel input[type="password"], .panel input[type="url"], .panel select {
+.panel input[type="password"], .panel input[type="url"], .panel input[type="text"], .panel select {
   padding: 6px 8px; border: 1px solid var(--line); border-radius: 6px; background: var(--bg);
 }
 .hint { color: var(--muted); font-size: 12px; margin: 0; }

@@ -23,6 +23,10 @@
       <input id="api-key" type="password" autocomplete="off" placeholder="sk-ant-…" />
     </label>
     <p class="hint">Stored only in this computer's Office storage. Get a key at console.anthropic.com.</p>
+    <label>Workspace ID (only if your key needs one)
+      <input id="workspace-id" type="text" autocomplete="off" placeholder="wrkspc_…" />
+    </label>
+    <p class="hint">Find it in Claude Console → Settings → Workspaces. Leave empty if requests already work.</p>
     <label>Model <select id="model"></select></label>
     <label>Effort
       <select id="effort">

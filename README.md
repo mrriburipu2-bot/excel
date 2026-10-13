@@ -87,6 +87,7 @@ npm start              # starts the dev server and sideloads into Excel desktop
 
 - **Model**: Claude Opus 5.5 (default), Fable 5.1, Sonnet 5.5 or Haiku 5.5.
 - **Effort**: from low (fastest) to max (most thorough). Medium is the default.
+- **Workspace ID**: only needed if you see "This API key is not scoped to a workspace". Copy it from Claude Console → Settings → Workspaces, or create the API key inside a workspace instead.
 - **API proxy URL**: point the add-in at your own server that forwards to the Anthropic API, so API keys never reach users' machines (recommended for organization-wide deployment).
 - **Web search** and **advanced Office.js code** are off by default.
 
