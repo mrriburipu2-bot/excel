@@ -47,6 +47,9 @@ export function describeError(err: unknown): string {
   if (err instanceof Anthropic.BadRequestError && /anthropic-workspace-id|scoped to a workspace/i.test(err.message)) {
     return "This API key isn't tied to a workspace. Open Settings and enter your Workspace ID (Claude Console → Settings → Workspaces), or create a key inside a workspace.";
   }
+  if (err instanceof Anthropic.BadRequestError && /credit balance/i.test(err.message)) {
+    return "Your Anthropic API account is out of credits. Add credits at console.anthropic.com → Settings → Billing, then try again. (A Claude.ai subscription doesn't include API credits.)";
+  }
   if (err instanceof Anthropic.APIError) return `Anthropic API error ${err.status ?? ""}: ${err.message}`;
   if (err instanceof Error) return err.message;
   return String(err);
