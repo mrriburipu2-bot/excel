@@ -43,17 +43,36 @@ Results are cached per input, so recalculation doesn't repeat API calls. Cell fu
 
 ## Setup
 
-Requirements: Node.js 18+ and Excel (desktop or web).
+This add-in isn't in the Office Store, so it won't appear under **Home → Add-ins → My Add-ins**. You have to *sideload* it, and the add-in's files must be running on your PC while you use it.
+
+### Excel for Windows (desktop)
+
+1. Install **Node.js LTS** from [nodejs.org](https://nodejs.org).
+2. Download this repository: **Code → Download ZIP** on GitHub, then unzip it. Or run `git clone https://github.com/mrriburipu2-bot/excel.git`.
+3. Double-click **`install-windows.cmd`** in the folder. If Windows asks whether to trust the "Developer CA for Microsoft Office Add-ins" certificate, click **Yes**.
+4. Excel opens with a **Claude AI → AI Assistant** button on the **Home** tab. Keep the black command window open while you use the add-in.
+
+Next time, open a terminal in the folder and run `npm start` (or double-click `install-windows.cmd` again). To remove the add-in, run `uninstall-windows.cmd`.
+
+> The Office Add-ins dialog in desktop Excel only lists Store add-ins. It has no "Upload My Add-in" option, so use the script above rather than that dialog.
+
+### Excel on the web
 
 ```bash
 npm install
-npm run dev-server     # serves https://localhost:3000 (installs a trusted dev certificate the first time)
-npm start              # in a second terminal: sideloads manifest.xml into Excel desktop
+npm run dev-server     # keep running; serves https://localhost:3000
 ```
 
-For **Excel on the web**, run `npm run dev-server`, then in Excel go to **Home → Add-ins → More Add-ins → My Add-ins → Upload My Add-in** and choose `manifest.xml`.
+Then in Excel on the web go to **Home → Add-ins → More Add-ins → My Add-ins → Upload My Add-in** and choose `manifest.xml`.
 
-Then in Excel:
+### Excel for Mac / manual
+
+```bash
+npm install
+npm start              # starts the server and sideloads into Excel desktop
+```
+
+### First use
 
 1. Click **Home → AI Assistant**.
 2. Paste your Anthropic API key (from [console.anthropic.com](https://console.anthropic.com)) in Settings, then click Save.
