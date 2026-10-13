@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Claude AI for Excel</title>
+  <script type="text/javascript" src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
+  <link rel="stylesheet" href="taskpane.css" />
+</head>
+<body>
+  <header class="bar">
+    <div class="brand"><img src="assets/icon-32.png" alt="" width="20" height="20" /> Claude AI</div>
+    <div class="bar-actions">
+      <button id="new-chat" class="icon-btn" title="New chat" aria-label="New chat">＋</button>
+      <button id="open-settings" class="icon-btn" title="Settings" aria-label="Settings">⚙</button>
+    </div>
+  </header>
+
+  <section id="settings" class="panel" hidden>
+    <h2>Settings</h2>
+    <label>Anthropic API key
+      <input id="api-key" type="password" autocomplete="off" placeholder="sk-ant-…" />
+    </label>
+    <p class="hint">Stored only in this computer's Office storage. Get a key at console.anthropic.com.</p>
+    <label>Model <select id="model"></select></label>
+    <label>Effort
+      <select id="effort">
+        <option value="low">Low – fastest</option>
+        <option value="medium">Medium</option>
+        <option value="high">High</option>
+        <option value="xhigh">Extra high</option>
+        <option value="max">Max – most thorough</option>
+      </select>
+    </label>
+    <label>API proxy URL (optional)
+      <input id="base-url" type="url" placeholder="https://your-proxy.example.com" />
+    </label>
+    <label class="check"><input id="web-search" type="checkbox" /> Allow web search</label>
+    <label class="check"><input id="allow-code" type="checkbox" /> Allow advanced Office.js code (asks before each run)</label>
+    <div class="row">
+      <button id="save-settings" class="primary">Save</button>
+      <button id="close-settings">Cancel</button>
+    </div>
+  </section>
+
+  <main id="chat">
+    <div id="welcome" class="welcome">
+      <h1>What should we do in this workbook?</h1>
+      <p>Ask in plain language. Claude reads your sheets and makes the changes: formulas, cleaning, tables, charts, pivots, formatting, dashboards and more.</p>
+      <div id="quick-actions" class="chips"></div>
+      <p class="hint">Tip: you can also type <code>=CLAUDE.ASK("…")</code> in any cell.</p>
+    </div>
+    <div id="log"></div>
+  </main>
+
+  <div id="confirm" class="confirm" hidden>
+    <strong id="confirm-title"></strong>
+    <pre id="confirm-detail"></pre>
+    <div class="row">
+      <button id="confirm-yes" class="primary">Allow</button>
+      <button id="confirm-no">Deny</button>
+    </div>
+  </div>
+
+  <footer class="composer">
+    <textarea id="prompt" rows="2" placeholder="e.g. Add a profit column and chart profit by region"></textarea>
+    <button id="send" class="primary" title="Send">Send</button>
+  </footer>
+</body>
+</html>
